@@ -8,9 +8,14 @@ namespace Almaz_chess
 {
     internal class Rook : Piece
     {
-        static string icon = "Л";
-        public Rook(bool isWhire) : base(isWhire)
+        public Rook(bool isWhite) : base(isWhite)
         {
+            icon = isWhite?"ЛАД":"ROO";
+        }
+        public string icon;
+        public override string Icon
+        {
+            get => icon;
         }
 
 
@@ -29,7 +34,7 @@ namespace Almaz_chess
 
             cells.Clear();
             for ((int x, int y) = (this.coordinate.x, this.coordinate.y);
-                x <= Board.maxCellIndex && y <= Board.maxCellIndex;
+                x >= 0 && y <= Board.maxCellIndex;
                 x--, y++)
             {
                 cells.Push((x, y));
@@ -38,7 +43,7 @@ namespace Almaz_chess
 
             cells.Clear();
             for ((int x, int y) = (this.coordinate.x, this.coordinate.y);
-                x <= Board.maxCellIndex && y <= Board.maxCellIndex;
+                x <= Board.maxCellIndex && y >= 0;
                 x++, y--)
             {
                 cells.Push((x, y));
@@ -47,7 +52,7 @@ namespace Almaz_chess
 
             cells.Clear();
             for ((int x, int y) = (this.coordinate.x, this.coordinate.y);
-                x <= Board.maxCellIndex && y <= Board.maxCellIndex;
+                x >= 0 && y >= 0;
                 x--, y--)
             {
                 cells.Push((x, y));
@@ -59,7 +64,9 @@ namespace Almaz_chess
 
         public static explicit operator Rook(Queen v)
         {
-            return new Rook(v.isWhite);
+            Rook rook = new Rook(v.isWhite);
+            rook.coordinate = v.coordinate;
+            return rook;
         }
     }
 }

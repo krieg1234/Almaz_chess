@@ -8,10 +8,14 @@ namespace Almaz_chess
 {
     internal class King : Piece
     {
-        static string icon = "K";
-
-        public King(bool isWhire) : base(isWhire)
+        public King(bool isWhite) : base(isWhite)
         {
+            icon = isWhite?"КОР":"KIN";
+        }
+        public string icon;
+        public override string Icon
+        {
+            get => icon;
         }
 
         public override (int x, int y)[][] CollectAllowWays()
@@ -19,21 +23,21 @@ namespace Almaz_chess
             Stack<(int x, int y)[]> ways = new Stack<(int x, int y)[]>();
 
             (int x, int y)[] nextWay;
-            nextWay = new (int x, int y)[1] { (this.coordinate.x + 1, this.coordinate.y) };
+            nextWay = new (int x, int y)[2] { (this.coordinate.x + 1, this.coordinate.y), coordinate };
             ways.Push(nextWay);
-            nextWay = new (int x, int y)[1] { (this.coordinate.x+1, this.coordinate.y-1) };
+            nextWay = new (int x, int y)[2] { (this.coordinate.x+1, this.coordinate.y-1), coordinate };
             ways.Push(nextWay);
-            nextWay = new (int x, int y)[1] { (this.coordinate.x, this.coordinate.y-1) };
+            nextWay = new (int x, int y)[2] { (this.coordinate.x, this.coordinate.y-1), coordinate };
             ways.Push(nextWay);
-            nextWay = new (int x, int y)[1] { (this.coordinate.x - 1, this.coordinate.y-1) };
+            nextWay = new (int x, int y)[2] { (this.coordinate.x - 1, this.coordinate.y-1), coordinate };
             ways.Push(nextWay);
-            nextWay = new (int x, int y)[1] { (this.coordinate.x - 1, this.coordinate.y) };
+            nextWay = new (int x, int y)[2] { (this.coordinate.x - 1, this.coordinate.y), coordinate };
             ways.Push(nextWay);
-            nextWay = new (int x, int y)[1] { (this.coordinate.x - 1, this.coordinate.y+1) };
+            nextWay = new (int x, int y)[2] { (this.coordinate.x - 1, this.coordinate.y+1), coordinate };
             ways.Push(nextWay);
-            nextWay = new (int x, int y)[1] { (this.coordinate.x, this.coordinate.y+1) };
+            nextWay = new (int x, int y)[2] { (this.coordinate.x, this.coordinate.y+1), coordinate };
             ways.Push(nextWay);
-            nextWay = new (int x, int y)[1] { (this.coordinate.x + 1, this.coordinate.y+1) };
+            nextWay = new (int x, int y)[2] { (this.coordinate.x + 1, this.coordinate.y+1), coordinate };
             ways.Push(nextWay);
 
             return ways.ToArray();

@@ -8,11 +8,16 @@ namespace Almaz_chess
 {
     internal class Queen : Piece
     {
-        static string icon = "Ф";
-        public Queen(bool isWhire) : base(isWhire)
+        public Queen(bool isWhite) : base(isWhite)
         {
+            icon = isWhite?"ФЕР":"QUE";
         }
-        
+        public string icon;
+        public override string Icon
+        {
+            get => icon;
+        }
+
 
         public override (int x, int y)[][] CollectAllowWays()
         {

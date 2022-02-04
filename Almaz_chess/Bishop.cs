@@ -8,11 +8,16 @@ namespace Almaz_chess
 {
     internal class Bishop : Piece
     {
-        static string icon = "B";
-        public Bishop(bool isWhire) : base(isWhire)
+        public Bishop(bool isWhite) : base(isWhite)
         {
+            icon = isWhite?"СЛО":"BIS";
         }
-        
+        public string icon;
+        public override string Icon
+        {
+            get => icon;
+        }
+
 
         public override (int x, int y)[][] CollectAllowWays()
         {
@@ -56,7 +61,9 @@ namespace Almaz_chess
 
         public static explicit operator Bishop(Queen v)
         {
-            return new Bishop(v.isWhite);
+            Bishop bishop= new Bishop(v.isWhite);
+            bishop.coordinate = v.coordinate;
+            return bishop;
         }
     }
 }
