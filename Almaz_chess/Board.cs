@@ -181,6 +181,9 @@ namespace Almaz_chess
         {
             try
             {
+                if (piece == null)
+                    throw new Exception("Фигура не выбрана");
+
                 if (x < 0 || y < 0 || x > Board.maxCellIndex || y > Board.maxCellIndex)
                     throw new Exception($"Координаты {(x, y)} за пределами доски");
 
